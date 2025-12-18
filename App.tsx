@@ -3,9 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Footer } from './components/Footer';
 import { LoginPage } from './components/LoginPage';
-import { TeacherLoginPage } from './components/TeacherLoginPage';
 import { StudentDashboard } from './components/StudentDashboard';
-import { TeacherDashboard } from './components/TeacherDashboard';
 import { supabase } from './src/lib/supabase';
 import { StudentData, Assessment, MonthlyExam, AttendanceRecord, Announcement, SUBJECTS, GRADES } from './src/types';
 import { CheckCircle2, X, Trash2, Loader2 } from 'lucide-react';
@@ -66,10 +64,7 @@ export default function App() {
     return false;
   });
 
-  const [currentView, setCurrentView] = useState<'landing' | 'login' | 'teacher-login' | 'dashboard' | 'teacher-dashboard'>('landing');
-
-  // Teacher Session State
-  const [teacherSubject, setTeacherSubject] = useState<string>('الرياضيات');
+  const [currentView, setCurrentView] = useState<'landing' | 'login' | 'dashboard'>('landing');
 
   // --- HISTORY & PERSISTENCE REMOVED FOR SUPABASE MIGRATION ---
   // We will now use direct Supabase state
@@ -236,15 +231,7 @@ export default function App() {
     return null;
   };
 
-  const handleTeacherLoginClick = () => {
-    setCurrentView('teacher-login');
-  };
 
-  const handleTeacherLoginSuccess = (selectedSubject: string) => {
-    setTeacherSubject(selectedSubject);
-    setCurrentView('teacher-dashboard');
-    triggerToast(`مرحباً بك يا أستاذ مادة ${selectedSubject}`, 'info');
-  };
 
   const handleLogout = () => {
     // Logout to login page instead of landing
@@ -262,7 +249,7 @@ export default function App() {
       <Header
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
-        isLoggedIn={currentView === 'dashboard' || currentView === 'teacher-dashboard'}
+        isLoggedIn={currentView === 'dashboard'}
         onLogout={handleLogout}
       />
 
@@ -280,17 +267,11 @@ export default function App() {
           {currentView === 'login' && (
             <LoginPage
               onLoginSuccess={handleStudentLoginSuccess}
-              onTeacherLoginClick={handleTeacherLoginClick}
               onBack={() => setCurrentView('landing')}
             />
           )}
 
-          {currentView === 'teacher-login' && (
-            <TeacherLoginPage
-              onLoginSuccess={handleTeacherLoginSuccess}
-              onBackToStudent={() => setCurrentView('login')}
-            />
-          )}
+
 
           {currentView === 'dashboard' && currentStudent && (
             <StudentDashboard
@@ -299,17 +280,7 @@ export default function App() {
             />
           )}
 
-          {currentView === 'teacher-dashboard' && (
-            <TeacherDashboard
-              students={students}
-              teacherSubject={teacherSubject}
-              onUpdateStudent={handleUpdateStudent}
-              onBulkUpdate={handleBulkUpdate}
-              onDeleteStudent={handleDeleteStudent}
-              onLogout={handleLogout}
-              triggerToast={triggerToast}
-            />
-          )}
+
         </div>
       </main>
 

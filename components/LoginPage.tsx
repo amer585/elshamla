@@ -7,7 +7,7 @@ interface LoginPageProps {
   onBack?: () => void;
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onTeacherLoginClick, onBack }) => {
+export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onBack }) => {
   const [nationalId, setNationalId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,19 +26,19 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onTeacherL
   return (
     <div className="w-full flex justify-center items-center py-12 animate-in fade-in zoom-in duration-300 relative">
       <div className="w-full max-w-lg bg-white/90 dark:bg-slate-900/90 rounded-3xl shadow-xl dark:shadow-none border border-slate-100 dark:border-slate-800 p-8 md:p-12 relative overflow-hidden backdrop-blur-sm transition-colors duration-300">
-        
+
         {/* Decorative top accent */}
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
 
         {/* Back Button */}
         {onBack && (
-            <button 
-                onClick={onBack}
-                className="absolute top-6 left-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors"
-                title="العودة"
-            >
-                <ArrowLeft className="w-5 h-5 rtl:rotate-180" />
-            </button>
+          <button
+            onClick={onBack}
+            className="absolute top-6 left-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors"
+            title="العودة"
+          >
+            <ArrowLeft className="w-5 h-5 rtl:rotate-180" />
+          </button>
         )}
 
         <div className="text-center mb-10 mt-4">
@@ -85,17 +85,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onTeacherL
           </button>
         </form>
 
-        {/* Teacher Login Section */}
-        <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
-            <button 
-                type="button"
-                onClick={onTeacherLoginClick}
-                className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors group p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800"
-            >
-                <UserCog className="w-5 h-5 text-slate-400 dark:text-slate-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
-                <span>تسجيل دخول المعلمين</span>
-            </button>
-        </div>
+
 
         <div className="mt-2 text-center">
           <p className="text-sm text-slate-400 dark:text-slate-500">

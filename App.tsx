@@ -241,8 +241,30 @@ export default function App() {
 
   const currentStudent = students.find(s => s.id === currentStudentId) || null;
 
+  // PWA Install Logic
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    });
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setInstallPrompt(null);
+      }
+    } else {
+      alert('يمكنك تثبيت التطبيق من إعدادات المتصفح:\n- للكمبيوتر: اضغط على أيقونة التثبيت في شريط العنوان\n- للموبايل: القائمة -> إضافة إلى الشاشة الرئيسية');
+    }
+  };
+
   return (
-    <div className={`min-h-screen flex flex-col font-sans relative text-slate-900 dark:text-slate-100`}>
+    <div className={`min-h-screen flex flex-col font-sans relative text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 transition-colors duration-300`}>
 
       <DynamicBackground isDarkMode={isDarkMode} />
 
@@ -250,19 +272,17 @@ export default function App() {
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
         isLoggedIn={currentView === 'dashboard'}
-        onLogout={handleLogout}
+        onLogout={() => setCurrentView('landing')}
       />
 
       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
 
-      <main className="flex-grow flex flex-col relative isolate">
-        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-6 md:py-8 flex-grow flex flex-col">
-          {loading && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
-              <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
-            </div>
+      <main className="flex-grow flex flex-col relative isolate justify-center">
+        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-6 flex-grow flex flex-col justify-center">
+          {loading && <div className="fixed inset-0 bg-white/50 z-50 flex items-center justify-center"><Loader2 className="animate-spin" /></div>}
+          {currentView === 'landing' && (
+            <Hero onLogin={() => setCurrentView('login')} onInstall={handleInstallClick} />
           )}
-          {currentView === 'landing' && <Hero onLogin={handleStartJourney} />}
 
           {currentView === 'login' && (
             <LoginPage

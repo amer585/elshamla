@@ -241,8 +241,11 @@ export default function App() {
 
   const currentStudent = students.find(s => s.id === currentStudentId) || null;
 
+  import { HelpModal } from './components/HelpModal';
+
   // PWA Install Logic
   const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [showHelp, setShowHelp] = useState(false);
 
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -259,7 +262,7 @@ export default function App() {
         setInstallPrompt(null);
       }
     } else {
-      alert('يمكنك تثبيت التطبيق من إعدادات المتصفح:\n- للكمبيوتر: اضغط على أيقونة التثبيت في شريط العنوان\n- للموبايل: القائمة -> إضافة إلى الشاشة الرئيسية');
+      setShowHelp(true);
     }
   };
 
@@ -276,6 +279,7 @@ export default function App() {
       />
 
       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+      <HelpModal isOpen={showHelp} onClose={() => setShowHelp(false)} />
 
       <main className="flex-grow flex flex-col relative isolate justify-center">
         <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-6 flex-grow flex flex-col justify-center">

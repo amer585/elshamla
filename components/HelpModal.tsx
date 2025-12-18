@@ -1,84 +1,75 @@
 import React from 'react';
-import { X, BookOpen, Calendar, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, Smartphone, Monitor, Share, MoreVertical } from 'lucide-react';
 
 interface HelpModalProps {
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
+export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
   return (
-    <div className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto relative">
-        <button 
-          onClick={onClose}
-          className="absolute top-4 left-4 p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors"
-        >
-          <X className="w-5 h-5 text-slate-600" />
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-800">
+
+        <button onClick={onClose} className="absolute top-4 left-4 p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-slate-200 transition-colors">
+          <X className="w-5 h-5 text-slate-500" />
         </button>
 
-        <div className="p-8">
-          <h2 className="text-2xl font-extrabold text-slate-800 mb-6 text-center">دليل استخدام المنصة</h2>
+        <div className="p-6 text-center">
+          <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500 mb-2">
+            تثبيت التطبيق
+          </h3>
+          <p className="text-slate-500 dark:text-slate-400 mb-6">
+            اختر جهازك لمعرفة كيفية التثبيت
+          </p>
 
-          <div className="space-y-8">
-            
-            <section>
-              <h3 className="flex items-center gap-2 text-lg font-bold text-purple-600 mb-3">
-                <BookOpen className="w-5 h-5" />
-                قسم الأكاديميات (الدرجات)
-              </h3>
-              <ul className="space-y-3 text-slate-600 text-sm leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 mt-1 shrink-0" />
-                  <span>
-                    <strong>التقييم الأسبوعي:</strong> انقر على أي "بطاقة أسبوع" لفتح نافذة التعديل. يمكنك تعديل الدرجة، الدرجة العظمى (من كم)، وتسجيل حالة الحضور (حاضر/غائب).
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 mt-1 shrink-0" />
-                  <span>
-                    <strong>الملاحظات:</strong> يمكنك كتابة ملاحظات نصية عند الغياب (مثلاً: "غياب بعذر") وستظهر للطالب.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 mt-1 shrink-0" />
-                  <span>
-                    <strong>إضافة أسبوع/مادة:</strong> استخدم أزرار "أسبوع جديد" أو "مادة جديدة" لإضافة خانات فارغة.
-                  </span>
-                </li>
-              </ul>
-            </section>
+          <div className="space-y-4 text-right">
 
-            <section className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-              <h3 className="flex items-center gap-2 text-lg font-bold text-indigo-600 mb-3">
-                <Calendar className="w-5 h-5" />
-                قسم الغياب والحضور
-              </h3>
-              <ul className="space-y-3 text-slate-600 text-sm leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 text-indigo-500 mt-1 shrink-0" />
-                  <span>
-                    <strong>تسجيل يومي:</strong> انتقل إلى تبويب "سجل الحضور" لتسجيل حالة الطالب ليوم معين.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 text-indigo-500 mt-1 shrink-0" />
-                  <span>
-                    <strong>تحديد الحصة:</strong> يمكنك تحديد اسم الدرس أو الحصة التي تم فيها الغياب.
-                  </span>
-                </li>
-              </ul>
-            </section>
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl flex items-start gap-4">
+              <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-600">
+                <Smartphone className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 dark:text-white mb-1">Android (Chrome)</h4>
+                <p className="text-sm text-slate-500 flex items-center gap-1">
+                  اضغط على القائمة <MoreVertical className="w-3 h-3 inline" /> ثم اختر
+                  <span className="font-bold text-emerald-600 mx-1">الإضافة إلى الشاشة الرئيسية</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl flex items-start gap-4">
+              <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600">
+                <Smartphone className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 dark:text-white mb-1">iPhone (Safari)</h4>
+                <p className="text-sm text-slate-500 flex items-center gap-1">
+                  اضغط على مشاركة <Share className="w-3 h-3 inline" /> ثم اختر
+                  <span className="font-bold text-blue-600 mx-1">Add to Home Screen</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl flex items-start gap-4">
+              <div className="p-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-slate-600">
+                <Monitor className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 dark:text-white mb-1">Computer</h4>
+                <p className="text-sm text-slate-500">
+                  اضغط على أيقونة التثبيت <span className="border p-0.5 rounded text-xs border-current">⬇</span> الموجودة في شريط العنوان بالأعلى
+                </p>
+              </div>
+            </div>
 
           </div>
 
-          <div className="mt-8 text-center">
-            <button 
-              onClick={onClose}
-              className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors"
-            >
-              فهمت، شكراً
-            </button>
-          </div>
+          <button onClick={onClose} className="mt-6 w-full py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors">
+            حسناً، فهمت
+          </button>
         </div>
       </div>
     </div>

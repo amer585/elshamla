@@ -37,7 +37,13 @@ const Toast = ({ message, onClose, type = 'success' }: { message: string; onClos
 const DynamicBackground = React.memo(({ isDarkMode }: { isDarkMode: boolean }) => (
   <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none transition-colors duration-700 bg-slate-50 dark:bg-slate-950">
     {/* Light Mode Grid */}
-    <div className={`absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] transition-opacity duration-700 ${isDarkMode ? 'opacity-0' : 'opacity-100'}`}></div>
+    <div
+      className={`absolute inset-0 transition-opacity duration-700 ${isDarkMode ? 'opacity-0' : 'opacity-100'}`}
+      style={{
+        backgroundImage: 'linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)',
+        backgroundSize: '24px 24px'
+      }}
+    ></div>
 
     {/* Dark Mode Stars */}
     <div className={`absolute inset-0 transition-opacity duration-700 ${isDarkMode ? 'opacity-100' : 'opacity-0'}`}>

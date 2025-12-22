@@ -12,7 +12,7 @@ export const Hero: React.FC<HeroProps> = ({ onLogin }) => {
       {/* Text Content */}
       <div className="flex-1 text-right max-w-2xl">
         <h1 className="text-4xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight">
-          منصة مدرستنا <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">الشاملة</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">الشاملة</span>
         </h1>
 
         <p className="text-lg lg:text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-lg">

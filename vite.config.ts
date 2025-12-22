@@ -17,8 +17,8 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
         manifest: {
-          name: 'منصة مدرستنا الشاملة',
-          short_name: 'مدرستنا',
+          name: 'الشاملة',
+          short_name: 'الشاملة',
           description: 'منصة مدرسية شاملة لعرض بيانات الطلاب',
           theme_color: '#ffffff',
           background_color: '#ffffff',

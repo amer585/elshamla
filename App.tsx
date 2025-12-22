@@ -539,17 +539,11 @@ export default function App() {
       <main className="flex-grow flex flex-col relative isolate">
         <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-6 md:py-8 flex-grow flex flex-col">
           {currentView === 'student-landing' && (
-            <Hero
-              onLogin={handleStartJourney}
-              onTeacherLogin={handleTeacherPortalClick}
-            />
+            <Hero onLogin={handleStartJourney} />
           )}
 
           {currentView === 'teacher-landing' && (
-            <TeacherHero
-              onLogin={handleTeacherLoginClick}
-              onStudentPortal={handleStudentPortalClick}
-            />
+            <TeacherHero onLogin={handleTeacherLoginClick} />
           )}
 
           {currentView === 'login' && (

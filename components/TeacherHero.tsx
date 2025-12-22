@@ -3,10 +3,9 @@ import { Illustration } from './Illustration';
 
 interface TeacherHeroProps {
     onLogin: () => void;
-    onStudentPortal: () => void;
 }
 
-export const TeacherHero: React.FC<TeacherHeroProps> = ({ onLogin, onStudentPortal }) => {
+export const TeacherHero: React.FC<TeacherHeroProps> = ({ onLogin }) => {
     return (
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-24 py-12 lg:py-20 animate-in fade-in duration-700">
 
@@ -26,18 +25,10 @@ export const TeacherHero: React.FC<TeacherHeroProps> = ({ onLogin, onStudentPort
                 >
                     تسجيل الدخول للمعلمين
                 </button>
-
-                <button
-                    onClick={onStudentPortal}
-                    className="mt-4 bg-transparent border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 px-8 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all text-base flex items-center justify-center gap-2"
-                >
-                    العودة لبوابة الطلاب
-                </button>
             </div>
 
             {/* Illustration */}
             <div className="flex-1 flex justify-center lg:justify-end w-full">
-                {/* We reuse the Illustration for now, but apply a hue rotation via inline style or CSS to differentiate if desired, or just keep it consistent. */}
                 <div className="filter hue-rotate-15">
                     <Illustration />
                 </div>

@@ -209,8 +209,8 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onL
                             const subjectWeekly = student.weeklyAssessments.filter(w => w.subject === subject);
                             const subjectMonthly = student.monthlyExams.filter(m => m.subject === subject);
 
-                            // Skip if no data
-                            if (subjectWeekly.length === 0 && subjectMonthly.length === 0) return null;
+                            // Show all subjects even if no data
+                            // if (subjectWeekly.length === 0 && subjectMonthly.length === 0) return null;
 
                             const isExpanded = expandedSubject === subject;
 

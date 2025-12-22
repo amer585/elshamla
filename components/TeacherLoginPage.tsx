@@ -4,10 +4,10 @@ import { SUBJECTS } from '../App';
 
 interface TeacherLoginPageProps {
     onLoginSuccess: (subject: string) => void;
-    onBackToStudent: () => void;
+    onBackToFront: () => void;
 }
 
-export const TeacherLoginPage: React.FC<TeacherLoginPageProps> = ({ onLoginSuccess, onBackToStudent }) => {
+export const TeacherLoginPage: React.FC<TeacherLoginPageProps> = ({ onLoginSuccess, onBackToFront }) => {
     const [password, setPassword] = useState('');
     const [selectedSubject, setSelectedSubject] = useState<string>(SUBJECTS[0]);
     const [error, setError] = useState('');
@@ -74,11 +74,11 @@ export const TeacherLoginPage: React.FC<TeacherLoginPageProps> = ({ onLoginSucce
                     </form>
 
                     <button
-                        onClick={onBackToStudent}
+                        onClick={onBackToFront}
                         className="w-full mt-4 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 text-sm py-2 flex items-center justify-center gap-2 transition-colors"
                     >
                         <ArrowRight className="w-4 h-4" />
-                        العودة لبوابة الطلاب
+                        العودة للصفحة الرئيسية
                     </button>
                 </div>
             </div>

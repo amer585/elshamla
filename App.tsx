@@ -556,7 +556,7 @@ export default function App() {
           {currentView === 'teacher-login' && (
             <TeacherLoginPage
               onLoginSuccess={handleTeacherLoginSuccess}
-              onBackToStudent={handleStudentPortalClick}
+              onBackToFront={handleTeacherPortalClick}
             />
           )}
 
